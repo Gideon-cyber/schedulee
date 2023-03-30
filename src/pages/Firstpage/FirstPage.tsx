@@ -24,19 +24,17 @@ const PageOne = ({
   setShowAddDropdown,
   showDropdown,
   setShowDropdown,
-
-  scheduler,
-}: {
+}: // scheduler,
+{
   showAddDropdown: boolean;
   showDropdown: boolean;
   setShowAddDropdown: React.Dispatch<React.SetStateAction<boolean>>;
   setShowDropdown: React.Dispatch<React.SetStateAction<boolean>>;
-  scheduler?: SchedulerHelpers;
+  // scheduler?: SchedulerHelpers;
 }) => {
   let { employees } = useAppSelector((state) => state.employee);
   // let { events } = useAppSelector((state) => state.event);
-  const event = scheduler?.edited;
-  console.log(event);
+  // const event = scheduler?.edited;
   const navigate = useNavigate();
   // const dispatch = useAppDispatch();
 

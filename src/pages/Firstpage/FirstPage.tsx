@@ -85,12 +85,12 @@ const PageOne = ({
   function reducer(state: initialState, action: any) {
     switch (action.type) {
       case "updateEvent":
-        const newkey = Number(Object.keys(state).slice(-1)[0]);
         return { 1: [...state[1], action.payload] };
-      // case 'updateEmail':
-      //   return { ...state, email: action.payload };
-      // case 'updateMessage':
-      //   return { ...state, message: action.payload };
+        // case 'updateEmail':
+        //   return { ...state, email: action.payload };
+        // case 'updateMessage':
+        //   return { ...state, message: action.payload };
+        return state;
       default:
         throw new Error();
     }

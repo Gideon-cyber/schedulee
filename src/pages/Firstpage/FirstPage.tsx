@@ -84,13 +84,12 @@ const PageOne = ({
     switch (action.type) {
       case "updateEvent":
         return { 1: [...state[1], action.payload] };
-        // case 'updateEmail':
-        //   return { ...state, email: action.payload };
-        // case 'updateMessage':
-        //   return { ...state, message: action.payload };
-        return state;
+      // case 'updateEmail':
+      //   return { ...state, email: action.payload };
+      // case 'updateMessage':
+      //   return { ...state, message: action.payload };
       default:
-        throw new Error();
+        return state;
     }
   }
 

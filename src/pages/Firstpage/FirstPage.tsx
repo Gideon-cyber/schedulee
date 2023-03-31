@@ -19,6 +19,8 @@ type initialState = Record<number, event>;
 
 type event = ProcessedEvent[];
 
+type Action = { type: "updateEvent"; payload: event };
+
 const PageOne = ({
   showAddDropdown,
   setShowAddDropdown,
@@ -57,7 +59,7 @@ const PageOne = ({
     });
   };
 
-  const initialState = {
+  const initialStateValue = {
     1: [
       {
         event_id: 2,
@@ -89,17 +91,12 @@ const PageOne = ({
       // case 'updateMessage':
       //   return { ...state, message: action.payload };
       default:
-        return state;
+        throw new Error();
     }
   }
 
-  const [state, dispatch] = useReducer(reducer, initialState);
-  const value = useMemo(
-    () => ({
-      state,
-    }),
-    [state, dispatch]
-  );
+  const [state, dispatch] = useReducer(reducer, initialStateValue);
+  const value = useMemo(() => state, [state, dispatch]);
   useEffect(() => {}, []);
 
   return (
@@ -195,7 +192,7 @@ const PageOne = ({
         customEditor={(scheduler) => (
           <CustomEditor scheduler={scheduler} dispatch={dispatch} />
         )}
-        events={value.state[1]}
+        events={value[1]}
         resources={employees}
         view="day"
         day={{

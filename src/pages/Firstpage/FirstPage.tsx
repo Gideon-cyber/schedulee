@@ -59,44 +59,65 @@ const PageOne = ({
     });
   };
 
-  const initialStateValue = {
-    1: [
-      {
-        event_id: 2,
-        title: "Event 1",
-        start: new Date(new Date(new Date().setHours(9)).setMinutes(30)),
-        end: new Date(new Date(new Date().setHours(10)).setMinutes(30)),
-        admin_id: 1,
-        description: "new event",
-        employeeName: "John",
-      },
-      {
-        event_id: 1,
-        title: "Event 1",
-        start: new Date(new Date(new Date().setHours(9)).setMinutes(30)),
-        end: new Date(new Date(new Date().setHours(10)).setMinutes(30)),
-        admin_id: 2,
-        description: "new event",
-        employeeName: "Gideon",
-      },
-    ],
-  };
+  const [something, setSomething] = useState([
+    {
+      event_id: 2,
+      title: "Event 1",
+      start: new Date(new Date(new Date().setHours(9)).setMinutes(30)),
+      end: new Date(new Date(new Date().setHours(10)).setMinutes(30)),
+      admin_id: 1,
+      description: "new event",
+      employeeName: "John",
+    },
+    {
+      event_id: 1,
+      title: "Event 1",
+      start: new Date(new Date(new Date().setHours(9)).setMinutes(30)),
+      end: new Date(new Date(new Date().setHours(10)).setMinutes(30)),
+      admin_id: 2,
+      description: "new event",
+      employeeName: "Gideon",
+    },
+  ]);
 
-  function reducer(state: initialState, action: any) {
-    switch (action.type) {
-      case "updateEvent":
-        return { 1: [...state[1], action.payload] };
-      // case 'updateEmail':
-      //   return { ...state, email: action.payload };
-      // case 'updateMessage':
-      //   return { ...state, message: action.payload };
-      default:
-        throw new Error();
-    }
-  }
+  // const initialStateValue = {
+  //   1: [
+  //     {
+  //       event_id: 2,
+  //       title: "Event 1",
+  //       start: new Date(new Date(new Date().setHours(9)).setMinutes(30)),
+  //       end: new Date(new Date(new Date().setHours(10)).setMinutes(30)),
+  //       admin_id: 1,
+  //       description: "new event",
+  //       employeeName: "John",
+  //     },
+  //     {
+  //       event_id: 1,
+  //       title: "Event 1",
+  //       start: new Date(new Date(new Date().setHours(9)).setMinutes(30)),
+  //       end: new Date(new Date(new Date().setHours(10)).setMinutes(30)),
+  //       admin_id: 2,
+  //       description: "new event",
+  //       employeeName: "Gideon",
+  //     },
+  //   ],
+  // };
 
-  const [state, dispatch] = useReducer(reducer, initialStateValue);
-  const value = useMemo(() => state, [state, dispatch]);
+  // function reducer(state: initialState, action: any) {
+  //   switch (action.type) {
+  //     case "updateEvent":
+  //       return { 1: [...state[1], action.payload] };
+  //     // case 'updateEmail':
+  //     //   return { ...state, email: action.payload };
+  //     // case 'updateMessage':
+  //     //   return { ...state, message: action.payload };
+  //     default:
+  //       throw new Error();
+  //   }
+  // }
+
+  // const [state, dispatch] = useReducer(reducer, initialStateValue);
+  // const value = useMemo(() => state, [state, dispatch]);
   useEffect(() => {}, []);
 
   return (
@@ -190,9 +211,13 @@ const PageOne = ({
       <Scheduler
         // getRemoteEvents={fetchRemote}
         customEditor={(scheduler) => (
-          <CustomEditor scheduler={scheduler} dispatch={dispatch} />
+          <CustomEditor
+            scheduler={scheduler}
+            // dispatch={dispatch}
+            setSomething={setSomething}
+          />
         )}
-        events={value[1]}
+        events={something}
         resources={employees}
         view="day"
         day={{

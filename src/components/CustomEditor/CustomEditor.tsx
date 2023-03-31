@@ -14,9 +14,14 @@ import InputFields from "../Inputs/Inputs";
 
 interface CustomEditorProps {
   scheduler: SchedulerHelpers;
-  dispatch: React.Dispatch<any>;
+  // dispatch: React.Dispatch<any>;
+  setSomething: React.Dispatch<any>;
 }
-const CustomEditor = ({ scheduler, dispatch }: CustomEditorProps) => {
+const CustomEditor = ({
+  scheduler,
+  // dispatch,
+  setSomething,
+}: CustomEditorProps) => {
   const event = scheduler.edited;
   const { employees } = useAppSelector((state) => state.employee);
 
@@ -65,7 +70,8 @@ const CustomEditor = ({ scheduler, dispatch }: CustomEditorProps) => {
           });
         })) as ProcessedEvent;
 
-        dispatch({ type: "updateEvent", payload: added_updated_event });
+        // dispatch({ type: "updateEvent", payload: added_updated_event });
+        setSomething((prev: any) => [...prev, added_updated_event]);
 
         scheduler.onConfirm(added_updated_event, event ? "edit" : "create");
         scheduler.close();
